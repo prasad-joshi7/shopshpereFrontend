@@ -189,8 +189,18 @@ export default function Navigation() {
                             >
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
-                                  <p className="-m-2 block p-2 text-gray-500">
-                                    {"item.name"}
+                                  <p
+                                    onClick={() =>
+                                      handleCategoryClick(
+                                        category,
+                                        section,
+                                        item,
+                                        () => setOpen(false)
+                                      )
+                                    }
+                                    className="-m-2 block p-2 text-gray-500 cursor-pointer hover:text-gray-800"
+                                  >
+                                    {item.name}
                                   </p>
                                 </li>
                               ))}
@@ -216,14 +226,28 @@ export default function Navigation() {
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <a
-                      href="/"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
-                  </div>
+                  {auth.user ? (
+                    <div className="flow-root">
+                      <p className="-m-2 block p-2 font-medium text-gray-900">
+                        {auth.user.firstName}
+                      </p>
+                      <button
+                        onClick={handleLogout}
+                        className="-m-2 block p-2 font-medium text-blue-600"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flow-root">
+                      <button
+                        onClick={handleOpen}
+                        className="-m-2 block p-2 font-medium text-gray-900"
+                      >
+                        Sign in
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
@@ -247,7 +271,7 @@ export default function Navigation() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Use Code : EXTRA10 To  Get 10% off on 2 or more items 
+          Use Code : EXTRA10 To  Get 10% off on 2 or more items
         </p>
 
         <nav aria-label="Top" className="mx-auto">
@@ -463,10 +487,10 @@ export default function Navigation() {
 
                 {/* Search */}
                 <div className="flex items-center lg:ml-6">
-                
-                  <p onClick={()=>navigate("/products/search")} className="p-2 text-gray-400 hover:text-gray-500">
+
+                  <p onClick={() => navigate("/products/search")} className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
-                    
+
                     <MagnifyingGlassIcon
                       className="h-6 w-6"
                       aria-hidden="true"
