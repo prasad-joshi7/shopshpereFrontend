@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
@@ -13,7 +13,7 @@ import {
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
 } from "./ActionType";
-import api, { API_BASE_URL } from "../../../config/api";
+import api from "../../../config/api";
 
 export const getProducts = () => async (dispatch) => {
   try {

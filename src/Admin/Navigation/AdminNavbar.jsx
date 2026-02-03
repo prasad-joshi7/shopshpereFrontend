@@ -242,6 +242,8 @@ export default function AdminNavbar({ handleSideBarViewInMobile }) {
         </Toolbar>
       </AppBar>
 
+      {renderMobileMenu}
+      {renderMenu}
     </Box>
   );
 }

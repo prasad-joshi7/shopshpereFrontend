@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React from "react";
 import OrderTraker from "./OrderTraker";
 import StarIcon from "@mui/icons-material/Star";
@@ -11,7 +11,7 @@ import { getOrderById, cancelOrder, returnOrder } from "../../../Redux/Customers
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
+
   const { orderId } = useParams();
   const { order } = useSelector((store) => store);
 
@@ -19,7 +19,7 @@ const OrderDetails = () => {
 
   useEffect(() => {
     dispatch(getOrderById(orderId));
-  }, []);
+  }, [orderId, dispatch]);
 
   const navigate = useNavigate();
 

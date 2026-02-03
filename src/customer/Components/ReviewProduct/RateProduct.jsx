@@ -1,6 +1,6 @@
 import {
   Button,
-  Divider,
+
   Grid,
   Rating,
   TextField,
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createReview } from "../../../Redux/Customers/Review/Action";
 import { useNavigate, useParams } from "react-router-dom";
 import { findProductById } from "../../../Redux/Customers/Product/Action";
-import CustomerRoutes from "../../../Routers/CustomerRoutes";
+
 
 const RateProduct = () => {
   const [formData, setFormData] = useState({ title: "", description: "" });
@@ -49,7 +49,7 @@ const RateProduct = () => {
   };
   useEffect(() => {
     dispatch(findProductById({ productId }));
-  }, []);
+  }, [productId, dispatch]);
   return (
     <div className="px-5 lg:px-20">
       <h1 className="text-xl p-5 shadow-lg mb-8 font-bold">

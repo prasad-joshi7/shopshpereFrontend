@@ -8,8 +8,7 @@ import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 
 // ** Icons Imports
-import ChevronUp from 'mdi-material-ui/ChevronUp'
-import ChevronDown from 'mdi-material-ui/ChevronDown'
+
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 
 const data = [
@@ -21,7 +20,7 @@ const data = [
     avatarText: 'US',
 
     avatarColor: 'success',
-   
+
   },
   {
     sales: '645k',
@@ -29,9 +28,9 @@ const data = [
     trendDir: 'down',
     title: '$2,415k',
     avatarText: 'UK',
-  
+
     avatarColor: 'error',
-   
+
   },
   {
     sales: '148k',
@@ -39,9 +38,9 @@ const data = [
     trendDir: 'up',
     avatarText: 'IN',
     subtitle: 'India',
-   
+
     avatarColor: 'warning',
-    
+
   },
   {
     sales: '86k',
@@ -49,9 +48,9 @@ const data = [
     trendDir: 'down',
     avatarText: 'JA',
     subtitle: 'Japan',
-   
+
     avatarColor: 'secondary',
-    
+
   },
   {
     sales: '42k',
@@ -60,7 +59,7 @@ const data = [
     avatarText: 'KO',
     subtitle: 'Korea',
     avatarColor: 'secondary',
-  
+
   }
 ]
 

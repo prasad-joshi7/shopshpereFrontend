@@ -1,4 +1,4 @@
-import axios from "axios";
+
 
 import {
   FIND_PRODUCTS_BY_CATEGORY_REQUEST,
@@ -85,9 +85,9 @@ export const searchProduct = (keyword) => async (dispatch) => {
   try {
     dispatch({ type: SEARCH_PRODUCT_REQUEST });
 
-    const { data } = await api.get(`/api/products/search`,{
-      params:{
-        q:keyword
+    const { data } = await api.get(`/api/products/search`, {
+      params: {
+        q: keyword
       }
     });
 
@@ -158,20 +158,20 @@ export const updateProduct = (product) => async (dispatch) => {
 };
 
 export const deleteProduct = (productId) => async (dispatch) => {
-  console.log("delete product action",productId)
+  console.log("delete product action", productId)
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    let {data}=await api.delete(`/api/admin/products/${productId}/delete`);
+    let { data } = await api.delete(`/api/admin/products/${productId}/delete`);
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
       payload: data,
     });
 
-    console.log("product delte ",data)
+    console.log("product delte ", data)
   } catch (error) {
-    console.log("catch error ",error)
+    console.log("catch error ", error)
     dispatch({
       type: DELETE_PRODUCT_FAILURE,
       payload:

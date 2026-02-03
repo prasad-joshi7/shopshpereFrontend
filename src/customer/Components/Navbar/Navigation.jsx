@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deepPurple } from "@mui/material/colors";
 import { getUser, logout } from "../../../Redux/Auth/Action";
 import { getCart } from "../../../Redux/Customers/Cart/Action";
-import TextField from "@mui/material/TextField";
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -37,7 +37,7 @@ export default function Navigation() {
       dispatch(getUser(jwt));
       dispatch(getCart(jwt));
     }
-  }, [jwt]);
+  }, [jwt, dispatch]);
 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,7 +65,7 @@ export default function Navigation() {
     if (location.pathname === "/login" || location.pathname === "/register") {
       navigate(-1);
     }
-  }, [auth.user]);
+  }, [auth.user, location.pathname, navigate]);
 
   const handleLogout = () => {
     handleCloseUserMenu();

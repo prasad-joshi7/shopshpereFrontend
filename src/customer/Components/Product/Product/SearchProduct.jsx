@@ -8,14 +8,11 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
+
 import Pagination from "@mui/material/Pagination";
 import TextField from '@mui/material/TextField';
 
-import { filters, singleFilter, sortOptions } from "./FilterData";
+import { filters, sortOptions } from "./FilterData";
 import ProductCard from "../ProductCard/ProductCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,8 +31,8 @@ export default function SearchProduct() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
-  const {keyword} = useParams();
+
+  const { keyword } = useParams();
   const { customersProduct } = useSelector((store) => store);
   const location = useLocation();
   const [isLoaderOpen, setIsLoaderOpen] = useState(false);
@@ -44,7 +41,7 @@ export default function SearchProduct() {
     setIsLoaderOpen(false);
   };
 
-  
+
   // console.log("location - ", colorValue, sizeValue,price,disccount);
 
   const handleSortChange = (value) => {
@@ -61,13 +58,13 @@ export default function SearchProduct() {
   };
 
   useEffect(() => {
-    
+
     dispatch(findProducts());
   }, [
-   keyword
+    keyword, dispatch
   ]);
 
- 
+
 
 
   useEffect(() => {
@@ -78,8 +75,8 @@ export default function SearchProduct() {
     }
   }, [customersProduct.loading]);
 
-  const handleSearch=(e)=>{
-    const keyword=e.target.value;
+  const handleSearch = (e) => {
+    const keyword = e.target.value;
     dispatch(searchProduct(keyword))
 
   }
@@ -138,7 +135,7 @@ export default function SearchProduct() {
                         as="div"
                         key={section.id}
                         className="border-t border-gray-200 px-4 py-6"
-                        // open={false}
+                      // open={false}
                       >
                         {({ open }) => (
                           <>
@@ -176,12 +173,12 @@ export default function SearchProduct() {
                                       type="checkbox"
                                       defaultChecked={option.checked}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                      
+
                                     />
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500"
-                                      // onClick={()=>handleFilter(option.value,section.id)}
+                                    // onClick={()=>handleFilter(option.value,section.id)}
                                     >
                                       {option.label}
                                     </label>
@@ -276,18 +273,18 @@ export default function SearchProduct() {
             </h2>
 
             <div>
-              
+
               <div className=" gap-y-10 ">
-               
+
 
                 {/* Product grid */}
                 <div className=" w-full">
-                <TextField
-                      id="outlined-basic"
-                      label="search product..."
-                      variant="outlined"
-                      onChange={handleSearch}
-                    />
+                  <TextField
+                    id="outlined-basic"
+                    label="search product..."
+                    variant="outlined"
+                    onChange={handleSearch}
+                  />
                   <div className="flex flex-wrap justify-center bg-white py-5 rounded-md ">
                     {customersProduct?.searchProducts?.map((item) => (
                       <ProductCard product={item} />

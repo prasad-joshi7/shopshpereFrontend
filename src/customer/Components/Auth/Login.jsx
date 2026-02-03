@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid, TextField, Button, Box, Snackbar, Alert } from "@mui/material";
+import { Grid, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, login } from "../../../Redux/Auth/Action";
@@ -17,8 +17,7 @@ export default function LoginUserForm({ handleNext }) {
     if (jwt) {
       dispatch(getUser(jwt))
     }
-
-  }, [jwt])
+  }, [jwt, dispatch])
 
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export default function LoginUserForm({ handleNext }) {
         navigate("/");
       }
     }
-  }, [auth.user, auth.error]);
+  }, [auth.user, auth.error, navigate]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

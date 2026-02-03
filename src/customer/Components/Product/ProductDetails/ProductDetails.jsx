@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../../../Redux/Customers/Product/Action";
 import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
 import { getAllReviews } from "../../../../Redux/Customers/Review/Action";
-import { lengha_page1 } from "../../../../Data/Women/LenghaCholi";
+
 import { gounsPage1 } from "../../../../Data/Gouns/gouns";
 
 const product = {
@@ -39,24 +39,24 @@ const product = {
   //   },
   // ],
 
-images : [
-  {
-    src: "https://manyavar.scene7.com/is/image/manyavar/SDES1160_316-Dark+Green_101.8174_26-09-2024-14-59:650x900?&dpr=on,2",
-    alt: "Green floral kurta fabric close-up",
-  },
-  {
-    src: "https://manyavar.scene7.com/is/image/manyavar/SDES1063_307-Maroon_101.6917_26-09-2024-10-22:650x900?&dpr=on,2",
-    alt: "Woman wearing dark green printed kurta",
-  },
-  {
-    src: "https://manyavar.scene7.com/is/image/manyavar/SDES1022_313-Purple_101.30240_05-03-2025-19-02:650x900?&dpr=on,2",
-    alt: "Green ethnic kurta with yellow floral print",
-  },
-  {
-    src: "https://manyavar.scene7.com/is/image/manyavar/SDES1063_321-Mehndi+Green_301.1654_25-11-2024-21-51:283x395?&dpr=on,2",
-    alt: "Green anarkali style kurta",
-  },
-],
+  images: [
+    {
+      src: "https://manyavar.scene7.com/is/image/manyavar/SDES1160_316-Dark+Green_101.8174_26-09-2024-14-59:650x900?&dpr=on,2",
+      alt: "Green floral kurta fabric close-up",
+    },
+    {
+      src: "https://manyavar.scene7.com/is/image/manyavar/SDES1063_307-Maroon_101.6917_26-09-2024-10-22:650x900?&dpr=on,2",
+      alt: "Woman wearing dark green printed kurta",
+    },
+    {
+      src: "https://manyavar.scene7.com/is/image/manyavar/SDES1022_313-Purple_101.30240_05-03-2025-19-02:650x900?&dpr=on,2",
+      alt: "Green ethnic kurta with yellow floral print",
+    },
+    {
+      src: "https://manyavar.scene7.com/is/image/manyavar/SDES1063_321-Mehndi+Green_301.1654_25-11-2024-21-51:283x395?&dpr=on,2",
+      alt: "Green anarkali style kurta",
+    },
+  ],
 
 
 
@@ -113,14 +113,13 @@ export default function ProductDetails() {
     const data = { productId: Number(productId), jwt };
     dispatch(findProductById(data));
     dispatch(getAllReviews(productId));
-  }, [productId]);
+  }, [productId, jwt, dispatch]);
 
   return (
     <div className="bg-white lg:px-20">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol
-            role="list"
             className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
           >
             {product.breadcrumbs.map((breadcrumb) => (
@@ -333,7 +332,7 @@ export default function ProductDetails() {
                 </h3>
 
                 <div className="mt-4">
-                  <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                  <ul className="list-disc space-y-2 pl-4 text-sm">
                     {product.highlights.map((highlight) => (
                       <li key={highlight} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>
@@ -518,7 +517,7 @@ export default function ProductDetails() {
         <section className=" pt-10">
           <h1 className="py-5 text-xl font-bold">Similer Products</h1>
           <div className="flex flex-wrap space-y-5">
-            {gounsPage1 .map((item) => (
+            {gounsPage1.map((item) => (
               <HomeProductCard product={item} />
             ))}
           </div>

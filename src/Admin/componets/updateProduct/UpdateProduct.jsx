@@ -43,7 +43,7 @@ const UpdateProductForm = () => {
     description: "",
   });
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
+  // const jwt = localStorage.getItem("jwt");
   const { productId } = useParams();
   const { customersProduct } = useSelector((store) => store);
 
@@ -55,17 +55,7 @@ const UpdateProductForm = () => {
     }));
   };
 
-  const handleSizeChange = (e, index) => {
-    let { name, value } = e.target;
-    name === "size_quantity" ? (name = "quantity") : (name = e.target.name);
 
-    const sizes = [...productData.size];
-    sizes[index][name] = value;
-    setProductData((prevState) => ({
-      ...prevState,
-      size: sizes,
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,18 +64,19 @@ const UpdateProductForm = () => {
   };
 
   useEffect(() => {
-    dispatch(findProductById({productId}));
-  }, [productId]);
+    dispatch(findProductById({ productId }));
+  }, [productId, dispatch]);
 
-  useEffect(()=>{
-    if(customersProduct.product){
-        for(let key in productData){
-    setProductData((prev)=>({...prev,[key]:customersProduct.product[key]}))
-    console.log(customersProduct.product[key],"--------",key)
-}
+  useEffect(() => {
+    if (customersProduct.product) {
+      for (let key in productData) {
+        setProductData((prev) => ({ ...prev, [key]: customersProduct.product[key] }))
+        console.log(customersProduct.product[key], "--------", key)
+      }
     }
 
-  },[customersProduct.product])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [customersProduct.product])
 
   return (
     <Fragment className="createProductContainer ">

@@ -1,8 +1,8 @@
 import React from "react";
 import { Avatar } from "@mui/material";
-import { Rating, Box, Typography, Grid } from "@mui/material";
+import { Rating, Box, Grid } from "@mui/material";
 
-const ProductReviewCard = ({item}) => {
+const ProductReviewCard = ({ item }) => {
   const [value, setValue] = React.useState(4.5);
   return (
     <div className="">
@@ -26,7 +26,7 @@ const ProductReviewCard = ({item}) => {
               <p className="opacity-70">April 5, 2023</p>
             </div>
             <div>
-            
+
 
               <Rating
                 value={value}
@@ -37,7 +37,7 @@ const ProductReviewCard = ({item}) => {
                 defaultValue={2.5}
                 precision={0.5}
               />
-             
+
             </div>
             <p>
               {item.review}

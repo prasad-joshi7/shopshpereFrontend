@@ -6,11 +6,9 @@ import {
   Card,
   CardHeader,
   Chip,
-  FormControl,
-  InputLabel,
   Menu,
   MenuItem,
-  Pagination,
+
   Table,
   TableBody,
   TableCell,
@@ -23,8 +21,7 @@ import {
 import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { Grid, Select } from "@mui/material";
-import { dressPage1 } from "../../../Data/dress/page1";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   confirmOrder,
@@ -33,12 +30,11 @@ import {
   getOrders,
   shipOrder,
 } from "../../../Redux/Admin/Orders/Action";
-import { configure } from "@testing-library/react";
+
 
 const OrdersTable = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({ status: "", sort: "" });
-  const [orderStatus, setOrderStatus] = useState("");
+  const [setOrderStatus] = useState("");
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const { adminsOrder } = useSelector((store) => store);
@@ -46,7 +42,7 @@ const OrdersTable = () => {
 
   useEffect(() => {
     dispatch(getOrders({ jwt }));
-  }, [jwt,adminsOrder.delivered, adminsOrder.shipped, adminsOrder.confirmed]);
+  }, [jwt, adminsOrder.delivered, adminsOrder.shipped, adminsOrder.confirmed, dispatch]);
 
   // useEffect(()=>{
   //   dispatch(getOrders({jwt}))
@@ -64,15 +60,7 @@ const OrdersTable = () => {
     setAnchorElArray(newAnchorElArray);
   };
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
 
-    setFormData({ ...formData, [name]: value });
-  };
-  function handlePaginationChange(event, value) {
-    console.log("Current page:", value);
-  }
 
   const handleConfirmedOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
@@ -80,13 +68,13 @@ const OrdersTable = () => {
     setOrderStatus("CONFIRMED")
   };
 
-  const handleShippedOrder = (orderId,index) => {
+  const handleShippedOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
     dispatch(shipOrder(orderId))
     setOrderStatus("ShIPPED")
   };
 
-  const handleDeliveredOrder = (orderId,index) => {
+  const handleDeliveredOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
     dispatch(deliveredOrder(orderId))
     setOrderStatus("DELIVERED")
@@ -155,8 +143,8 @@ const OrdersTable = () => {
             alignItems: "center",
             "& .MuiCardHeader-action": { mt: 0.6 },
           }}
-         
-         
+
+
         />
         <TableContainer>
           <Table sx={{ minWidth: 800 }} aria-label="table in dashboard">
@@ -180,9 +168,9 @@ const OrdersTable = () => {
                   sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}
                 >
                   <TableCell sx={{}}>
-                  <AvatarGroup max={4} sx={{justifyContent: 'start'}}>
-      {item.orderItems.map((orderItem)=><Avatar  alt={item.title} src={orderItem.product.imageUrl} /> )}
-    </AvatarGroup>
+                    <AvatarGroup max={4} sx={{ justifyContent: 'start' }}>
+                      {item.orderItems.map((orderItem) => <Avatar alt={item.title} src={orderItem.product.imageUrl} />)}
+                    </AvatarGroup>
                     {" "}
                   </TableCell>
 
@@ -223,7 +211,7 @@ const OrdersTable = () => {
                       label={item.orderStatus}
                       size="small"
                       color={
-                        item.orderStatus === "PENDING" ? "info" :item.orderStatus==="DELIVERED"? "success":"secondary"
+                        item.orderStatus === "PENDING" ? "info" : item.orderStatus === "DELIVERED" ? "success" : "secondary"
                       }
                       className="text-white"
                     />
@@ -256,13 +244,13 @@ const OrdersTable = () => {
                       >
                         <MenuItem
                           onClick={() => handleConfirmedOrder(item.id, index)}
-                          disabled={item.orderStatus==="DELEVERED" || item.orderStatus==="SHIPPED" || item.orderStatus==="CONFIRMED"}
+                          disabled={item.orderStatus === "DELEVERED" || item.orderStatus === "SHIPPED" || item.orderStatus === "CONFIRMED"}
                         >
                           CONFIRMED ORDER
-                          
+
                         </MenuItem>
                         <MenuItem
-                        disabled={item.orderStatus==="DELIVERED" || item.orderStatus==="SHIPPED"}
+                          disabled={item.orderStatus === "DELIVERED" || item.orderStatus === "SHIPPED"}
                           onClick={() => handleShippedOrder(item.id, index)}
                         >
                           SHIPPED ORDER

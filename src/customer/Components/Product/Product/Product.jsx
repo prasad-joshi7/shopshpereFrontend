@@ -32,7 +32,7 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
+
   const param = useParams();
   const { customersProduct } = useSelector((store) => store);
   const location = useLocation();
@@ -93,6 +93,7 @@ export default function Product() {
     sortValue,
     pageNumber,
     stock,
+    dispatch
   ]);
 
   const handleFilter = (value, sectionId) => {
@@ -191,7 +192,7 @@ export default function Product() {
                         as="div"
                         key={section.id}
                         className="border-t border-gray-200 px-4 py-6"
-                        // open={false}
+                      // open={false}
                       >
                         {({ open }) => (
                           <>
@@ -236,7 +237,7 @@ export default function Product() {
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500"
-                                      // onClick={()=>handleFilter(option.value,section.id)}
+                                    // onClick={()=>handleFilter(option.value,section.id)}
                                     >
                                       {option.label}
                                     </label>
