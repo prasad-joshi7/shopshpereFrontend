@@ -8,18 +8,19 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/Store';
 
 
+import ErrorBoundary from './ErrorBoundary';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-      
-  
-      
-    </BrowserRouter>
-    
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

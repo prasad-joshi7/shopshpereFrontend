@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import LoginUserForm from "./Login";
+import RegisterUserForm from "./Register";
+import { Box, Modal } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
