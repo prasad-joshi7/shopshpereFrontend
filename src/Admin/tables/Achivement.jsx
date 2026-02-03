@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 import { ThemeProvider, createTheme, styled, useTheme } from '@mui/material/styles'
+import { useSelector } from 'react-redux'
 
 // Styled component for the triangle shaped background image
 const TriangleImg = styled('img')({
@@ -20,10 +21,6 @@ const TrophyImg = styled('img')({
   height: 98,
   position: 'absolute'
 })
-
-
-
-import { useSelector } from 'react-redux'
 
 const Achivement = () => {
   // ** Hook
