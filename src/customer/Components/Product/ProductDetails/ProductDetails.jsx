@@ -104,6 +104,10 @@ export default function ProductDetails() {
   };
 
   const handleSubmit = () => {
+    if (!jwt) {
+      navigate("/login");
+      return;
+    }
     const data = { productId, size: selectedSize.name };
     dispatch(addItemToCart({ data, jwt }));
     navigate("/cart");
