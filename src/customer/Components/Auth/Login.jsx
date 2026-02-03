@@ -94,7 +94,7 @@ export default function LoginUserForm({ handleNext }) {
       </div>
       <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleCloseSnakbar}>
         <Alert onClose={handleCloseSnakbar} severity="success" sx={{ width: '100%' }}>
-          {auth.error ? auth.error : auth.user ? "Register Success" : ""}
+          {auth.error ? auth.error : auth.user ? "Login Success" : ""}
         </Alert>
       </Snackbar>
     </React.Fragment>
