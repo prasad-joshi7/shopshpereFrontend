@@ -4,7 +4,7 @@ import {
   Button,
   Card,
   CardHeader,
-  CardHeader,
+
   Pagination,
 
   Table,
