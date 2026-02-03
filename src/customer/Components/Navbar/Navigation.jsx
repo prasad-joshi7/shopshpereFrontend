@@ -62,10 +62,11 @@ export default function Navigation() {
     if (auth.user) {
       handleClose();
     }
-    if (location.pathname === "/login" || location.pathname === "/register") {
-      navigate(-1);
+    // Open modal if on login or register page and user is not logged in
+    if (!auth.user && (location.pathname === "/login" || location.pathname === "/register")) {
+      setOpenAuthModal(true);
     }
-  }, [auth.user, location.pathname, navigate]);
+  }, [auth.user, location.pathname]);
 
   const handleLogout = () => {
     handleCloseUserMenu();
